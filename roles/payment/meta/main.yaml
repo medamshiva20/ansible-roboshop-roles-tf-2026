@@ -1,0 +1,3 @@
+dependencies:
+# Payment dependent on common
+- role: common

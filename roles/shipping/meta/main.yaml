@@ -1,0 +1,3 @@
+dependencies:
+#shipping depends on the common role
+- role: common

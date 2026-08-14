@@ -1,0 +1,44 @@
+- name: Setup the java
+  ansible.builtin.import_role:
+   name: common
+   tasks_from: java-setup.yaml
+
+- name: Setup the application
+  ansible.builtin.import_role:
+   name: common
+   tasks_from: app-setup.yaml
+
+- name: Setup the systemd service
+  ansible.builtin.import_role:
+   name: common
+   tasks_from: systemd-setup.yaml
+
+- name: Install the mysql package
+  ansible.builtin.dnf:
+   name: mysql
+   state: present
+
+- name: Install python related dependencies
+  ansible.builtin.pip:
+   name: "{{item}}"
+   state: present
+  loop:
+   - PyMySQL
+   - cryptography
+- name: Import shipping data
+  community.mysql.mysql_db:
+   state: import
+   name: all
+   login_host: "{{MYSQL_HOST}}"
+   login_user: root
+   login_password: Roboshop@1
+   target: "{{item}}"
+  loop:
+   - /app/db/schema.sql
+   - /app/db/app-user.sql
+   - /app/db/master-data.sql
+
+- name: Restart the service
+  ansible.builtin.service:
+   name: "{{component}}"
+   state: restarted

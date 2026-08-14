@@ -1,0 +1,5 @@
+- name: Calling roles from here
+  hosts: local
+  connection: local
+  roles:
+   - demo
