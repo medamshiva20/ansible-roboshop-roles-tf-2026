@@ -11,9 +11,9 @@
    enabled: yes
 
 - name: Install boto3 and botocore packages
-  ansible.builtin.dnf:
+  ansible.builtin.pip:
    name: "{{item}}"
-   state: present
+   executable: pip3.9
   loop:
    - boto3
    - botocore
