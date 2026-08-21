@@ -33,7 +33,7 @@
    remote_src: yes
 
 - name: install dependencies
-  comunity.general.npm:
+  community.general.npm:
    path: /app
 
 
