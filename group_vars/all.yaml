@@ -9,3 +9,4 @@ MYSQL_HOST: mysql-"{{env}}".sivadevops.in
 SHIPPING_HOST: shipping-"{{env}}".sivadevops.in
 RABBITMQ_HOST: rabbitmq-"{{env}}".sivadevops.in
 PAYMENT_HOST: payment-"{{env}}".sivadevops.in
+app_version: v3
